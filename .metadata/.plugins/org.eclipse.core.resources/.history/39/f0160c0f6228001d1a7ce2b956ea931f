@@ -1,0 +1,10 @@
+package com.user.rest.config;
+
+import com.github.javafaker.Faker;
+
+public class FakerBeanConfig {
+	
+	public Faker getFaker() {
+		return new Faker();
+	}
+}
