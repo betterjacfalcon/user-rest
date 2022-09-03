@@ -1,0 +1,26 @@
+package com.user.rest.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.user.rest.models.User;
+import com.user.rest.services.UserService;
+
+@RestController
+@RequestMapping("/users")
+public class UserListController {
+
+	private UserService userService;
+	
+	@GetMapping 
+	public ResponseEntity<List<User>> getUsers(){
+	
+		return new ResponseEntity<List<User>>(UserService.getUsers(), HttpStatus.OK );
+	
+	}
+}
