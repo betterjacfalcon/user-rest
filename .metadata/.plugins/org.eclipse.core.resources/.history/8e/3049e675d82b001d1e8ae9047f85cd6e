@@ -1,0 +1,23 @@
+package com.user.rest.services;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.user.rest.entities.Role;
+import com.user.rest.repositories.RoleRepositories;
+
+@Service
+public class RoleService {
+	
+	private RoleRepositories repository;
+	
+	public List<Role> getRoles(){
+		
+		return repository.findAll();
+	}
+	
+	public Role createRole(Role role) {		
+		return repository.save(role);
+	}
+}
