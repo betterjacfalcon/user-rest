@@ -19,7 +19,7 @@ import com.user.rest.models.User;
 import com.user.rest.services.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/v1/users")
 public class UserListController {
 
 	@Autowired
