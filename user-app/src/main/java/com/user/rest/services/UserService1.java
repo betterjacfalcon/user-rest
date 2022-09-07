@@ -45,4 +45,9 @@ public class UserService1 {
 		() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("user %s not found ", userName, password)));
 		
 	}
+
+	public Page<String> getUserNames(int page,int size) {
+		// TODO Auto-generated method stub
+		return userRepository.getUserNames(PageRequest.of(page, size));
+	}
 }
