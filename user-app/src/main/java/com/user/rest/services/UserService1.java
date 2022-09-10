@@ -1,8 +1,11 @@
 package com.user.rest.services;
 
-import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -14,6 +17,7 @@ import com.user.rest.repositories.UserRepositories;
 
 @Service
 public class UserService1 {
+	private static final Logger log = LoggerFactory.getLogger(UserService1.class);
 	
 	@Autowired
 	private UserRepositories userRepository;
@@ -28,9 +32,17 @@ public class UserService1 {
 		
 	}
 	
+	@CacheEvict("users")
+	public void deleteUserByUserName(String userName) {
+		Users users = getUserByUserName(userName);
+		userRepository.delete(users);
+	}	
+	
+	@Cacheable("users")
 	public Users getUserByUserName(String userName) {
+		log.info("Getting user by username{}", userName);
 		return userRepository.findByUserName(userName).orElseThrow(
-		() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("user %d not found ", userName)));
+		() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("user %s not found ", userName)));
 		
 	}
 	
@@ -50,4 +62,6 @@ public class UserService1 {
 		// TODO Auto-generated method stub
 		return userRepository.getUserNames(PageRequest.of(page, size));
 	}
+	
+		
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,5 +63,11 @@ public class UserController {
 	@PostMapping
 	public ResponseEntity<Users> autheticate(@RequestBody Users users){
 		return new ResponseEntity<>(userService.getUserByUserNameAndPassword(users.getUserName(), users.getPassword()), HttpStatus.OK);	
+	}
+	
+	@DeleteMapping("/{userName}")
+	public ResponseEntity<Void> deleteUsers(@PathVariable("userName") String userName){
+		userService.deleteUserByUserName(userName);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);			
 	}
 }
