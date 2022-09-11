@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class RoleService {
 	private UserInRoleRepositories userInRolerepository;
 	
 	
+	@Secured({"ROLE_ADMIN"})
 	public List<Users> getUsersByRole(String roleName){
 		return userInRolerepository.findUserByRole(roleName);
 	}	
