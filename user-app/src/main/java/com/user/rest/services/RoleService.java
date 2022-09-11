@@ -3,6 +3,8 @@ package com.user.rest.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -24,7 +26,7 @@ public class RoleService {
 	private UserInRoleRepositories userInRolerepository;
 	
 	
-	@Secured({"ROLE_ADMIN"})
+	@RolesAllowed({"ROLE_ADMIN"})
 	public List<Users> getUsersByRole(String roleName){
 		return userInRolerepository.findUserByRole(roleName);
 	}	
