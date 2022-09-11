@@ -27,6 +27,20 @@ public class UserInRole {
 	@ManyToOne
 	@JoinColumn(name="role_id")	
 	private Role role;
+	
+	
+
+	public UserInRole() {
+		
+	}
+	
+	
+
+	public UserInRole(Users users, Role role) {
+		super();
+		this.user = users;
+		this.role = role;
+	}
 
 	public Integer getId() {
 		return id;
@@ -36,12 +50,12 @@ public class UserInRole {
 		this.id = id;
 	}
 
-	public Users getUser() {
+	public Users getUsers() {
 		return user;
 	}
 
-	public void setUser(Users user) {
-		this.user = user;
+	public void setUsers(Users users) {
+		this.user = users;
 	}
 
 	public Role getRole() {

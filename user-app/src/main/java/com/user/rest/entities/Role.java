@@ -19,7 +19,15 @@ public class Role {
 	private Integer id;
 	
 	@Column(name="name")
-	private String name;
+	private String name;	
+	
+	public Role() {
+		
+	}
+
+	public Role(String name) {		
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return id;
