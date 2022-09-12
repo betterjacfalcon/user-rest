@@ -1,0 +1,5 @@
+package com.user.rest.models;
+
+public class User {
+
+}

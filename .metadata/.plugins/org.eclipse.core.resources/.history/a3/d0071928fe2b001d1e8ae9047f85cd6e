@@ -1,0 +1,5 @@
+package com.user.rest.services;
+
+public class UserService1 {
+
+}

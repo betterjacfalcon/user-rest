@@ -1,0 +1,14 @@
+package com.user.rest.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.user.rest.services.UserService1;
+
+@RestController //Estereotipo
+@RequestMapping("/users")
+public class UserController {
+	
+	private UserService1 service;
+	
+}

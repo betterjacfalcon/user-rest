@@ -1,0 +1,36 @@
+package com.user.rest.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.user.rest.models.User;
+import com.user.rest.services.UserService;
+
+@RestController
+@RequestMapping("/users")
+public class UserListController {
+
+	@Autowired
+	private UserService userService;
+	
+	@GetMapping 
+	public ResponseEntity<List<User>> getUsers(){
+	
+		return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK );
+	
+	}
+	
+	@GetMapping(value="/{userName}")
+	public ResponseEntity<User> getUserByUserName(@PathVariable("username") String userName){
+		
+		return new ResponseEntity<User>(userService.getUserByUserName(userName), HttpStatus.OK );
+	
+	}
+}
