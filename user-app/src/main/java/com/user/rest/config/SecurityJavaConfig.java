@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(jsr250Enabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled= true)
 public class SecurityJavaConfig extends WebSecurityConfigurerAdapter{
 
 	@Override

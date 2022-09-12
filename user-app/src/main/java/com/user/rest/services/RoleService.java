@@ -8,11 +8,14 @@ import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.user.rest.entities.Role;
 import com.user.rest.entities.Users;
+import com.user.rest.models.Devs4jSecurityRule;
 import com.user.rest.repositories.RoleRepositories;
 import com.user.rest.repositories.UserInRoleRepositories;
 
@@ -25,8 +28,7 @@ public class RoleService {
 	@Autowired
 	private UserInRoleRepositories userInRolerepository;
 	
-	
-	@RolesAllowed({"ROLE_ADMIN"})
+	@Devs4jSecurityRule
 	public List<Users> getUsersByRole(String roleName){
 		return userInRolerepository.findUserByRole(roleName);
 	}	
